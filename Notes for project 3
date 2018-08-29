@@ -1,0 +1,113 @@
+HTML Forms
+--Overview of Forms
+form element- wraps all other elements into our formin index.HTML
+<form></form>
+2 important attributes to form element action
+<form action= "index.html" method ="">
+post(HTTP POST method) or get(HTTP GET method) are possible values to put into method
+--The input element
+most commonly form element (is a self closing tag)
+<input type="text" id="name" name="user_name">
+<input type="email" id="mail" name="user_email">
+<input type="password" id="password" name="user_password">
+type- attribute indicates what kind of input we want- many options such as email tel and password
+id- not required but helpful when targeting items with css and JS, need to associate labels with specific form controls
+name- needed so when a form is submited to server side code, server can process values appropriately
+--The Textarea element
+Ex: for users to write a bio about themselves:
+<textarea id="bio" name="user_bio"></textarea> (not a self closing tag)
+<textarea id="comment" name="user_comment"></textarea>
+--The Button element
+<button type="submit">Sign Up</button>
+two other types of button, reset(automatically clear all information when clicked) and button (no intended behaivor, to be used with JS)
+submit(submit form and send all information to server)
+--The Label Element
+<label for ="name">Name:</label>
+<input type="text" id="name" name="user_name">
+<label for="mail">Email:</label>
+<input type="email" id="mail" name="user_email">
+<label for="password">Password:</label>
+<input type="password" id="password" name="user_password">
+<label for="bio">Biography</label>
+<textarea id="bio" name="user_bio"><</textarea>      
+--Fieldsets and legends
+Provides titles for distinct sections
+       <fieldset>
+        <legend><span class="number">1</span>Your basic info</legend>
+        <label for ="name">Name:</label>
+        <input type="text" id="name" name="user_name">
+        <label for="mail">Email:</label>
+        <input type="email" id="mail" name="user_email">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="user_password">
+       </fieldset>
+     
+       <fieldset>
+        <legend><span class="number">1</span>Your profile</legend>
+        <label for="bio">Biography</label>
+        <textarea id="bio" name="user_bio"><</textarea> 
+       </fieldset>
+--Select Menus
+optionvalue-puts values in the list
+opt group- groups them by a category
+<label for="job">Job role:</label>
+         <select id="job" name="user_job">
+          <optgroup label="Web">
+            <option value="frontend_developer">Front-End Developer</option>
+            <option value="php_developer">PHP Developer</option>
+            <option value="python_developer">Python Developer</option>
+            <option value="rails_developer">Rails Developer</option>
+            <option value="web_designer">Web Designer</option>
+            <option value="wordpress_developer">Word Press Developer</option>
+            </optgroup>
+          <optgroup label="Mobile">
+           <option value="android_developer">Android Developer</option>
+           <option value="ios_developer">IOS Developer</option>
+           <option value="mobile_developer">Mobile Developer</option>
+            </optgroup>
+          <optgroup label="Business">
+           <option value="business_owner">Business Owner</option>
+           <option value="freelancer">Freelancer</option>
+            </optgroup>
+--Radio--show all options at once (good for 5 and less options)
+<input type="radio" id="under_13" value="under_13" name="user_age"><label for="under_13" class="light">Under 13</label><br>
+<input type="radio" id="over_13" value="over_13" name="user_age"><label for="over_13" class="light">13 or older</label>
+since name attributes are the same, you cannot choose both options (part of the same group)
+if you cange the name attributs, then you can choose both
+--Checkboxes
+</select>
+<label>Interests:</label>
+<input type="checkbox" id="development" value="interest_development" name="user_interest"><label class="light" for="development">Development</label><br>
+<input type="checkbox" id="design" value="interest_design" name="user_interest"><label class="light" for="design">Design</label><br>
+<input type="checkbox" id="business" value="interest_business" name="user_interest"><label class="light" for="business">Business</label>
+
+</fieldset>
+
+---jQuery Basics
+What is jquery?
+helps add interactivy to webpage, makes DOM easier
+different browsers didnt do the same thing with javascript
+jquery vs. JS
+JS
+const box= document.querySelector('.box');
+box.style.display. = 'none';
+
+jQuery--$ is a substitute for jQuery
+jQuery('.box').hide();
+$('.box').hide();
+$('.box').show();
+
+const box= document.querySelector('.box');
+box.addEventListener('click', function(){
+    alert('You clicked me')
+})
+
+$('.box').click(function(){
+    alert('You clicked me')
+})
+--Animating Elements with jQuery
+visibility methods: fadeIn() fadeOut() slideIn() slideOut() delay()
+#-select id, .-select class
+$('#flashMessage').hide();
+$('#flashMessage').fadeIn(2000);-forces the fade to wait 2 seconds
+$('#flashMessage').slideOut(2000);
