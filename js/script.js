@@ -184,19 +184,19 @@ $('#payment').change(function(){
   }
 });
 
-$(".container").append("<p></p>");
+$("form").append("<span></span>");
 $(".container").submit(function(){
   let isFormValid = true;
   event.preventDefault();
   $("#name:input").each(function(){
     if ($.trim($(this).val()).length == 0){
-    $(':button').attr('disabled', false);
-    $(this).addClass("highlight").css("border", "1px solid red");
-    isFormValid = false;
-    $(".container p").text("Please enter your name.");
+      $(':button').attr('disabled', false);
+      $(this).addClass("highlight").css("border", "1px solid red");
+      isFormValid = false;
+      $("form").append("<span></span>");
+      $("form span").text("Please enter your name.").css("display", "block").css("color", "red");
   }
     else{
-     $(':button').attr('disabled',true);
      $(this).removeClass("highlight");
      $(this).css("border", "1px solid black");
         }
@@ -212,6 +212,8 @@ $(".container").submit(function(){
         if ($.trim($(this).val()).length == 0){
             $(this).addClass("highlight").css("border", "1px solid red");
             isFormValid = false;
+            $("form").append("<span></span>");
+            $("form span").text("Please enter a valid email.").css("display", "block").css("color", "red");
         } else{
             $(this).removeClass("highlight");
             $(this).css("border", "1px solid black");
@@ -234,13 +236,15 @@ $(".container").submit(function(){
   $(".container").submit(function(){
     let isFormValid = true;
     event.preventDefault();
-    $(".activities:input").each(function(){
-        if ($(".activities").not(":checked")){
-            $(this).addClass("highlight").css('color', 'red');
+    $(".activities").each(function(){
+        if ($(".activities input:checked").length < 1){
+            $(this).addClass("highlight").css("display", "block").css('color', 'red');
             isFormValid = false;
+            $("form").append("<span></span>");
+            $("form span").text("Please choose at least one activity.").css("display", "block").css("color", "red");
         }
-        else{ 
-            $(this).removeClass("highlight").css("color", "black");
+        else {
+            $(this).removeClass("highlight");
         }
     });
     return isFormValid;
@@ -249,16 +253,20 @@ $(".container").submit(function(){
 $(".container").submit(function(){
   let isFormValid = true;
   event.preventDefault();
+  if ($('#payment option:selected').val() === 'credit card'){ 
   $("#cc-num:input").each(function(){
     if ($.trim($(this).val()).length < 13 || ($(this).val()).length > 19){
         $(this).addClass("highlight").css("border", "1px solid red");
         isFormValid = false;
+        $("form").append("<span></span>");
+        $("form span").text("Please your credit card number. Make sure it is 13-19 digits long.").css("display", "block").css("color", "red");
     }
     else{
         $(this).removeClass("highlight");
-        
+    
     }
 });
+  }
 return isFormValid;
 });
   
@@ -269,6 +277,8 @@ return isFormValid;
     $("#zip:input").each(function(){
       if ($.trim($(this).val()).length < 5 || ($(this).val()).length > 5){
         $(this).addClass("highlight").css("border", "1px solid red");
+        $("form").append("<span></span>");
+        $("form span").text("Please enter your zip code.").css("display", "block").css("color", "red");
         
         isFormValid = false;
     } else{
@@ -287,6 +297,8 @@ return isFormValid;
       if ($.trim($(this).val()).length < 3 || ($(this).val()).length > 3){
         $(this).addClass("highlight").css("border", "1px solid red");
         isFormValid = false;
+        $("form").append("<span></span>");
+        $("form span").text("Please enter your cvv.").css("display", "block").css("color", "red");
     }
     else{
         $(this).removeClass("highlight");
@@ -296,3 +308,11 @@ return isFormValid;
 return isFormValid;
 });
 
+$(".container").submit(function(){
+ if ($(".highlight").length > 0) {
+   alert("Please fill out the appropriate fields indicated in red.");
+ }
+ else {
+   alert("Thank you for registering! We will submit your information.");
+  }
+ })
