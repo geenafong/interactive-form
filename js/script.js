@@ -2,8 +2,6 @@
 $(':input:enabled:visible:first').focus();
 
 //"Job Role" section
-//Add placeholder text of "Your Job Role" in "other-title"
-$('#other-title').attr("placeholder", "Your Job Role");
 //hide other job role section
 $('#other-title').hide();
 //when other is clicked, show the text box
