@@ -223,7 +223,7 @@ $("form").append("<span></span>");
 $("form").append("<span></span>");
 $("form").append("<span></span>");
 $("form").append("<span></span>");
-$("#mail").prev().append("<p></p>");
+$("#mail").prev().append("<div></div>");
 
 //For the NAME input
 $(".container").submit(function(){
@@ -276,9 +276,9 @@ $(".container").submit(function(){
     var email=$('#mail').val();
     var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
      if( !emailReg.test( email ) ) {
-      $("label p").text('Please enter a valid email.').css("display", "block").css("color", "red");
+      $("label div").text('Please enter a valid email.').css("display", "block").css("color", "red");
      } else {
-      $("label p").text('Please enter a valid email.').css("display", "none");
+      $("label div").text('Please enter a valid email.').css("display", "none");
      }
     });
   });
